@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import NewBillForm
 from .models import Bill
 from datetime import datetime
+from django.http import HttpResponseRedirect
 
 def index(request):
     #corrobora si request viene de un form con metodo post
@@ -18,6 +19,7 @@ def index(request):
             #conectando con la base de datos. escribiendo datos en una variable a traves de un modelo (objetos)
             b = Bill(date=date, title=title, content=content, author=author)
             b.save()
+            return HttpResponseRedirect('/')
 
     #conectando con la base de datos.leyendo de la base de datos
     list_bills = Bill.objects.all() #crea una lista de diccionario que contiene todos los registros del modelo Bill de la base de datos.

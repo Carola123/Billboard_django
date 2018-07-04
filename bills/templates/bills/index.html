@@ -21,7 +21,7 @@
     <div id="container">
     {% for bill in list_bills %}
         <div class="bill">
-        <span class="date">{{ bill.date }}</span> <!-- bill es un diccionario de la lista y date es una key de ese diccionario, el valor se mostrara en el html-->
+        <span class="date">{{ bill.date.date }}</span> <!-- bill es un diccionario de la lista y date es una key de ese diccionario, el valor se mostrara en el html-->
         <h3>{{bill.title}}</h3>
         <p>{{bill.content}}</p>
         <span class="author">{{bill.author}}</span>
@@ -31,7 +31,7 @@
 
 
     <div id="form">
-        <form method="POST" action="/"> <!--cuando action es igual a / rl form me lleva a home page -->
+        <form method="POST" action="/"> <!--cuando action es igual a / el form me lleva a home page -->
         {% csrf_token %}
         {{ form }}
    </form>
