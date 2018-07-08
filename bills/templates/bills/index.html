@@ -14,10 +14,46 @@
 
 
 <body>
+     {% for m in messages %}
+        <div class="alert {{ m.tags }}">{{ m }}</div>
+      {% endfor %}
 
     {% block content %}
-
     <h2>Billboard</h2>
+    <div id="user">
+        {% if user.is_authenticated %}
+        <p>{{ user }}</p>
+        <a href="/logout">Logout</a>
+        {% else %}
+        <p>AnonymousUser</p>
+        <span id="show-login">Login</span>
+        <span id="show-register">Register</span>
+        {% endif %}
+
+    </div>
+
+    <div id="login">
+        <form method="POST" action="/login">
+            {% csrf_token %}
+            <h4 class="form-signin-heading">Please sign in</h4>
+            <label for="username" class="sr-only">Email address</label>
+            <input id="username" class="form-control" placeholder="Username" required="" autofocus="" type="text" name="username">
+            <label for="password" class="sr-only">Password</label>
+            <input id="password" class="form-control" placeholder="Password" required="" type="password" name="password">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+
+    <div id="register">
+         <h4 class="form-signin-heading">Create a new account</h4>
+        <form method="POST" action="/register">
+            {% csrf_token %}
+            {{ registerForm }}
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Create the account</button>
+        </form>
+    </div>
+
+
     <div id="container">
     {% for bill in list_bills %}
         <div class="bill">

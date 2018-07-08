@@ -16,3 +16,16 @@ $('.add').show()
 $('.action').hide()
 })
 
+$('#show-login').on('click', function(){
+$('#login form')[0].reset()
+$('#login').slideDown()
+$('#register').slideUp()
+})
+
+$('#show-register').on('click', function(){
+$('#register form')[0].reset()
+$('#register').slideDown()
+$('#login').slideUp()
+})
+
+
